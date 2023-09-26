@@ -4,15 +4,18 @@ import { useDimensions, useDeviceOrientation } from "@react-native-community/hoo
 
 
 const App = () => {
-  let x = 1;
+  const { landscape } = useDeviceOrientation();
+  const containerStyle = landscape ? styles.containerLandscape : styles.containerPortrait;
+  const imageStyle = landscape ? styles.imageLandscape : styles.imagePortrait;
+
   return (
     <SafeAreaView style={styles.wrapper}>
-      <View style={styles.container}>
+      <View style={containerStyle}>
         <Text style={styles.text}>Boiler Room Inventory App</Text>
         <View style={styles.boilerContainer}>
           <Image 
             source={require('./assets/Boiler.png')}
-            style={{ height: 95, width: 300 }}
+            style={ imageStyle }
           />
         </View>
       </View>
@@ -28,6 +31,16 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderRadius: 5,
   },
+  containerPortrait: {
+    backgroundColor: "lightblue",
+    flex: 1,
+    alignItems: "center",
+  },
+  containerLandscape: {
+    backgroundColor: 'lightyellow',
+    flex: 1,
+    alignItems: "center",
+  },
   container: {
     backgroundColor: 'lightblue',
     flex: 1,
@@ -42,8 +55,21 @@ const styles = StyleSheet.create({
   },
   boilerContainer: {
     paddingTop: 50,
+  },
+  imagePortrait: {
+    height: 95,
+    width: 300,
+    justifyContent: "center",
+  },
+  imageLandscape: {
+    height: 200,
+    width: 500,
+    justifyContent: "center",
+  },
+  boilerContainer: {
+    paddingTop: 50,
   }
-})
+});
 
 
 
