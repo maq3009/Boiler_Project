@@ -1,5 +1,7 @@
 import React from "react"
 import { View, Text, Image, SafeAreaView, StyleSheet } from 'react-native'
+import { useDimensions, useDeviceOrientation } from "@react-native-community/hooks";
+
 
 const App = () => {
   let x = 1;
